@@ -98,6 +98,7 @@ const CompanyWorkingDaysForm = ({
                   id={day.id}
                   checked={selectedDays.includes(day.id)}
                   onCheckedChange={() => handleDayToggle(day.id)}
+                  className="border-2 border-gray-700 bg-gray-200 peer-checked:bg-gray-800 peer-checked:border-gray-900 transition-all"
                 />
                 <Label htmlFor={day.id}>{day.label}</Label>
               </div>

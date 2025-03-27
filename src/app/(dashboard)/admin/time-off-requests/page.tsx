@@ -1,4 +1,4 @@
-import { prisma } from "@/components/lib/prisma";
+import { prisma } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import React from "react";
@@ -11,7 +11,7 @@ import {
   Table,
   TableHead,
 } from "@/components/ui/table";
-import { formatDate } from "@/components/lib/utils";
+import { formatDate } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";

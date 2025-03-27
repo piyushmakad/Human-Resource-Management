@@ -332,6 +332,7 @@ const CompanyHolidaysForm = ({
                           <Checkbox
                             checked={field.value}
                             onCheckedChange={field.onChange}
+                            className="border-2 border-gray-700 bg-gray-200 peer-checked:bg-gray-800 peer-checked:border-gray-900 transition-all"
                           />
                         </FormControl>
                         <div className="space-y-1 leading-none">
@@ -474,6 +475,7 @@ const CompanyHolidaysForm = ({
                         <Checkbox
                           checked={field.value}
                           onCheckedChange={field.onChange}
+                          className="border-2 border-gray-700 bg-gray-200 peer-checked:bg-gray-800 peer-checked:border-gray-900 transition-all"
                         />
                       </FormControl>
                       <div className="space-y-1 leading-none">
