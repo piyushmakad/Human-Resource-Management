@@ -73,8 +73,8 @@ model TimeOffRequest {
     type             TimeOffType
     reason           String?
     status           RequestStatus @default(PENDING)
-    managerId        String
-    manager          User          @relation("ManagerApprovals", fields: [managerId], references: [id])
+    managerId        String?
+    manager          User?          @relation("ManagerApprovals", fields: [managerId], references: [id])
     notes            String?
     workingDaysCount Int
     createdAt        DateTime      @default(now())

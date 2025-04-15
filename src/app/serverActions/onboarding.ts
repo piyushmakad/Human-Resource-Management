@@ -10,8 +10,8 @@ export async function createEmployee(
 ) {
   try {
     const user = await (await clerkClient()).users.getUser(clerkId);
-    if (!user || !user.firstName || !user.lastName) {
-      throw new Error("User not found.");
+    if (!user || !user.firstName ) {
+      throw new Error("User not found");
     }
 
     const code = await prisma.code.findFirst({
@@ -38,7 +38,7 @@ export async function createEmployee(
         clerkId: user.id,
         email: user.emailAddresses[0].emailAddress,
         firstName: user.firstName,
-        lastName: user.lastName,
+        lastName: user.lastName || "",
         role: "EMPLOYEE",
         department: department || null,
         companyId: code.companyId,

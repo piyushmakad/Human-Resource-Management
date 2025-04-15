@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/prisma";
+import  prisma  from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import React from "react";
@@ -38,6 +38,7 @@ const page = async () => {
       createdAt: "desc",
     },
   });
+
   return (
     <div className="space-y-8 mt-12">
       <div className="flex flex-col space-y-2">

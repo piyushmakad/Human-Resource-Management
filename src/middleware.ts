@@ -10,6 +10,33 @@ export default clerkMiddleware(async (auth, req: NextRequest) => {
   const { userId, sessionClaims, redirectToSignIn } = await auth();
 
   console.log(sessionClaims?.metadata);
+
+  if (
+    userId &&
+    req.nextUrl.pathname === "/" &&
+    !sessionClaims?.metadata?.onboardingCompleted
+  ) {
+    return NextResponse.redirect(new URL("/onboarding", req.url));
+  }
+
+  if (
+    userId &&
+    req.nextUrl.pathname === "/" &&
+    sessionClaims?.metadata?.onboardingCompleted &&
+    sessionClaims?.metadata?.role === "ADMIN"
+  ) {
+    return NextResponse.redirect(new URL("/admin", req.url));
+  }
+
+  if (
+    userId &&
+    req.nextUrl.pathname === "/" &&
+    sessionClaims?.metadata?.onboardingCompleted &&
+    sessionClaims?.metadata?.role === "EMPLOYEE"
+  ) {
+    return NextResponse.redirect(new URL("/employee", req.url));
+  }
+
   if (isPublicRoute(req)) {
     return NextResponse.next();
   }

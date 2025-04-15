@@ -33,6 +33,7 @@ import { useRouter } from "next/navigation";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { cn } from "@/lib/utils";
 import { createAdmin, createEmployee } from "@/app/serverActions/onboarding";
+import { toast } from "sonner";
 
 type EmployeeFormValues = z.infer<typeof employeeSchema>;
 type AdminFormValues = z.infer<typeof adminSchema>;
@@ -120,6 +121,8 @@ const OnboardingForm = ({
     if (!user) {
       return;
     }
+
+    let canRedirect = false;
     setIsSubmitting(true);
     setError(null);
 
@@ -132,7 +135,8 @@ const OnboardingForm = ({
       );
       if (response?.success) {
         console.log("Admin created successfully");
-        router.push("/admin")
+        canRedirect = true;
+        router.push("/admin");
       }
     } catch (error) {
       console.error(`Error creating admin: ${error}`);
@@ -143,6 +147,14 @@ const OnboardingForm = ({
       );
     } finally {
       setIsSubmitting(false);
+    }
+
+    if (canRedirect) {
+      console.log("Redirecting to employee");
+      toast.success(
+        "Onboarding completed successfully."
+      );
+      window.location.reload();
     }
   };
 
@@ -250,7 +262,6 @@ const OnboardingForm = ({
                     name="lastName"
                     label="Last Name"
                     control={employeeForm.control}
-                    disabled
                     className="bg-gray-100"
                   />
                 </div>
@@ -327,7 +338,6 @@ const OnboardingForm = ({
                       name="lastName"
                       label="Last Name"
                       control={adminForm.control}
-                      disabled
                       className="bg-gray-100"
                     />
                   </div>
