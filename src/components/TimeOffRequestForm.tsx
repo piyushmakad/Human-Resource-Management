@@ -35,7 +35,6 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { CompanyHoliday, TimeOffRequest, TimeOffType } from "@prisma/client";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
-import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon, InfoIcon, XIcon } from "lucide-react";
 import {
   Popover,
@@ -45,6 +44,7 @@ import {
 import { Checkbox } from "./ui/checkbox";
 import timeOffRequestSchema from "@/validations/TimeOffRequest.validation";
 import { createTimeOffRequest } from "@/app/serverActions/employee-action";
+import { Calendar } from "./ui/calendar";
 
 const getDaysBetween = (startDate: Date, endDate: Date) => {
   const days = [];
